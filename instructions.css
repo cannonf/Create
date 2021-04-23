@@ -1,0 +1,28 @@
+.titles {
+    background-color: #00ffff; /* Green */
+    position:relative; left:20px; top:10px;
+    border: 5px solid #ff0000;
+    color: rgb(0, 0, 0);
+    padding: 2% 13%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+  }
+  .paras {
+    background-color: #ff00d4; /* Green */
+    position:relative; left:20px; top:15px;
+    border: 5px solid #ff0000;
+    color: rgb(0, 0, 0);
+    padding: 8% 13%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+  }
+  .img {
+    position:relative; left:20px; top:15px;
+    border: 5px solid #ff0000;
+    padding: 6% 15%;
+    display: inline-block;
+  }
