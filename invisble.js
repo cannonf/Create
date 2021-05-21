@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 28
   let score = 0
   const grid = document.querySelector('.grid')
+    //this is making the grid
   const layout = [
     2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
     2,4,4,4,4,4,4,4,4,4,4,4,4,2,2,4,4,4,4,4,4,4,4,4,4,4,4,2,
@@ -37,8 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   ]
-  // 1 - wall
-  // 4 - empty
+// 2 is an invisble wall
+// 4 is a blank space
+//5 is a greendot
 
   const squares = []
 
@@ -57,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
           squares[i].classList.add('ghost-lair')
         } else if (layout[i] === 3) {
           squares[i].classList.add('weck')
+          //weck is the red trail left behind so you can tell where you have been
         }
         else if (layout[i] === 5) {
           squares[i].classList.add('power-pellet')
@@ -67,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   //create Characters
-  //draw pacman onto the board
+
   let characterCurrentIndex = 366
   squares[characterCurrentIndex].classList.add('character')
   //get the coordinates of pacman on the grid with X and Y axis
@@ -75,9 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return [index % width, Math.floor(index / width)]
   }
 
-  // console.log(getCoordinates(characterCurrentIndex))
-
-  //move pacman
   function moveCharacter(e) {
     squares[characterCurrentIndex].classList.remove('character')
     switch(e.keyCode) {
@@ -88,10 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
           !squares[characterCurrentIndex -1].classList.contains('ghost-lair')
           )
           characterCurrentIndex -= 1
-        if (squares[characterCurrentIndex -1] === squares[363]) {
-          window.location.href = "startp.html";
-          characterCurrentIndex = 391
-        }
+
         break
       case 38:
         if(
@@ -109,8 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
         )
         characterCurrentIndex += 1
         if (squares[characterCurrentIndex +1] === squares[392]) {
-          window.location.href = "startp.html";
-          characterCurrentIndex = 364
+          // this is when the character hits that index they are messaged with a game over
+          //this index is the end of the maze
+          setTimeout(function(){ alert("Congratulations you have made it to the end of the maze with a score of " + score); window.location.href = "startp.html";}, 0)     
+
         }
         break
       case 40:
@@ -124,12 +123,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     squares[characterCurrentIndex].classList.add('character')
     squares[characterCurrentIndex].classList.add('weck')
+    //checking everytime you move if there is a greendot and what to do with it
     powerPelletEaten()
 
   }
   document.addEventListener('keyup', moveCharacter)
   scoreDisplay.innerHTML = score
 
+  // what happens when you eat a greendot
   function powerPelletEaten() {
     if (squares[characterCurrentIndex].classList.contains('power-pellet')) {
       score +=10
