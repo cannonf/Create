@@ -1,28 +1,44 @@
+/* These are the classes that define each box */
 .titles {
-    background-color: #00ffff; /* Green */
+    background-color: #00ffff; 
     position:relative; left:20px; top:10px;
     border: 5px solid #ff0000;
     color: rgb(0, 0, 0);
-    padding: 2% 13%;
+    padding: 2% 7%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
   }
   .paras {
-    background-color: #ff00d4; /* Green */
-    position:relative; left:20px; top:15px;
+    background-color: #ff00d4; 
+    position:relative; left:20px; top:-30px;
     border: 5px solid #ff0000;
-    color: rgb(0, 0, 0);
-    padding: 8% 13%;
+    color: #000000;
+    padding: 4.7% 2%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
   }
-  .img {
+/* This is the code for the move part because it had to many lines so it had different padding */
+  .paras2 {
+    background-color: #ff00d4; 
     position:relative; left:20px; top:15px;
     border: 5px solid #ff0000;
-    padding: 6% 15%;
+    color: #000000;
+    padding: 2% 5%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+  }
+
+  .img {
+    position:relative; left:20px; top:15px;
+    width: 160px;
+    height: 200px;
+    border: 5px solid #ff0000;
+    padding: 20px 75px;
     display: inline-block;
   }
