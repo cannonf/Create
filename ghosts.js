@@ -1,45 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
- 
+ // this displays the score
   const scoreDisplay = document.getElementById('score')
   const width = 28
   let score = 0
   const grid = document.querySelector('.grid')
+  //this is making the grid
   const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    1,4,4,4,4,4,4,4,4,4,4,4,4,1,1,4,4,4,4,4,4,4,4,4,4,4,4,1,
+    1,4,4,4,4,4,4,4,4,4,4,4,4,1,1,4,4,4,4,4,4,4,4,4,4,4,3,1,
     1,4,1,1,1,1,4,1,1,1,1,1,4,1,1,4,1,1,1,1,1,4,1,1,1,1,4,1,
     1,4,1,1,1,1,4,1,1,1,1,1,4,1,1,4,1,1,1,1,1,4,1,1,1,1,4,1,
     1,4,1,1,1,1,4,1,1,1,1,1,4,1,1,4,1,1,1,1,1,4,1,1,1,1,4,1,
-    1,4,4,4,4,4,4,4,4,4,4,4,4,4,1,4,4,4,4,4,4,4,4,4,4,4,4,1,
+    1,4,4,4,4,4,3,4,4,4,4,4,4,4,1,4,4,4,4,4,4,4,4,4,4,4,4,1,
     1,4,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,4,1,
     1,4,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,4,1,
     1,4,4,4,4,4,4,4,4,4,4,4,4,1,1,4,4,4,4,4,4,4,4,4,4,4,4,1,
     1,1,1,1,1,1,4,1,1,1,1,1,4,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,
     1,1,1,1,1,1,4,1,1,4,4,4,4,4,4,4,4,4,4,1,1,4,1,1,1,1,1,1,
-    1,1,1,1,1,1,4,1,1,4,1,1,4,4,4,4,1,1,4,1,1,4,1,1,1,1,1,1,
+    1,1,1,1,1,1,4,1,1,4,1,1,4,4,4,4,1,1,4,1,1,3,1,1,1,1,1,1,
     1,1,1,1,1,1,4,1,1,4,1,1,4,4,4,4,1,1,4,1,1,4,1,1,1,1,1,1,
     1,1,4,4,4,4,4,4,4,4,1,1,4,4,4,4,1,1,4,1,1,4,4,4,4,4,4,4,
     1,1,1,1,1,1,4,1,1,4,1,1,4,4,4,4,1,1,4,1,1,1,1,4,1,1,1,1,
-    1,1,1,1,1,1,4,1,1,4,1,1,1,1,1,1,1,1,4,1,1,1,1,4,4,4,1,1,
-    1,1,1,1,1,1,4,1,1,4,4,4,4,4,4,4,4,4,4,1,1,1,1,1,1,4,1,1,
-    1,4,4,4,4,4,3,1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,
-    1,4,1,1,1,1,4,1,1,1,1,1,4,1,1,4,1,1,1,1,1,4,1,1,1,1,4,1,
-    1,4,1,1,1,1,4,1,1,1,1,1,4,1,1,4,1,1,1,1,1,4,1,1,1,1,4,1,
+    1,1,1,1,1,1,4,1,1,4,1,1,4,4,4,4,1,1,4,1,1,1,1,4,4,4,1,1,
+    1,1,1,1,1,1,4,1,1,4,4,4,4,4,4,3,4,4,4,1,1,1,1,1,1,4,1,1,
+    1,4,4,4,4,4,3,1,1,4,4,4,4,4,4,4,4,4,4,4,1,1,1,4,4,4,4,1,
+    1,4,1,1,1,1,4,1,1,1,1,1,1,1,1,4,1,1,1,1,1,4,1,1,1,1,4,1,
+    1,4,1,1,1,1,4,1,1,1,1,1,1,1,1,4,1,1,1,1,1,4,1,1,1,1,4,1,
     1,4,4,4,1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,1,4,4,4,1,
     1,1,1,4,1,1,4,1,1,4,1,1,1,1,1,1,1,1,4,1,1,4,1,1,4,1,1,1,
     1,1,1,4,1,1,4,1,1,4,1,1,1,1,1,1,1,1,4,1,1,4,1,1,4,1,1,1,
-    1,4,4,4,4,4,4,1,1,4,4,4,4,1,1,4,4,4,4,1,1,4,4,4,4,4,4,1,
+    1,4,4,4,4,4,4,1,1,4,4,4,4,1,1,4,4,4,3,1,1,4,4,4,4,4,4,1,
     1,4,1,1,1,1,1,1,1,1,1,1,4,1,1,4,1,1,1,1,1,1,1,1,1,1,4,1,
     1,4,1,1,1,1,1,1,1,1,1,1,4,1,1,4,1,1,1,1,1,1,1,1,1,1,4,1,
-    1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,1,
+    1,4,4,4,4,4,4,4,4,4,4,4,3,4,4,4,4,4,4,4,4,4,4,4,4,4,3,1,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   ]
-  // 0 - pac-dots
-  // 1 - wall
-  // 2 - ghost-lair
-  // 3 - power-pellet
-  // 4 - empty
-
+// 1 is a wall
+// 4 is a blank space
+//3 is a greendot
   const squares = []
 
   //create your board
@@ -54,9 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         squares[i].classList.add('pac-dot')
       } else if (layout[i] === 1) {
         squares[i].classList.add('wall')
-      } else if (layout[i] === 2) {
-        squares[i].classList.add('ghost-lair')
-      } else if (layout[i] === 3) {
+      }  else if (layout[i] === 3) {
         squares[i].classList.add('power-pellet')
       }
     }
@@ -65,17 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   //create Characters
-  //draw pacman onto the board
   let characterCurrentIndex = 366
   squares[characterCurrentIndex].classList.add('character')
-  //get the coordinates of pacman on the grid with X and Y axis
-  // function getCoordinates(index) {
-  //   return [index % width, Math.floor(index / width)]
-  // }
+  //get the coordinates of the character on the grid with X and Y axis
 
-  // console.log(getCoordinates(characterCurrentIndex))
 
-  //move pacman
+
+  //moves character baised on the key movements
   function moveCharacter(e) {
     squares[characterCurrentIndex].classList.remove('character')
     switch(e.keyCode) {
@@ -86,10 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
           !squares[characterCurrentIndex -1].classList.contains('ghost-lair')
           )
           characterCurrentIndex -= 1
-        if (squares[characterCurrentIndex -1] === squares[363]) {
-          window.location.href = "scoreboard.html";
-          characterCurrentIndex = 391
-        }
         break
       case 38:
         if(
@@ -106,9 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
           !squares[characterCurrentIndex +1].classList.contains('ghost-lair')
         )
         characterCurrentIndex += 1
+        //this is saying that if the charater reaches the end of the maze it will display
+        //the score and send them back to the start page
         if (squares[characterCurrentIndex +1] === squares[392]) {
-          window.location.href = "scoreboard.html";
-          characterCurrentIndex = 364
+        setTimeout(function(){ alert("Congratulations you have made it to the end of the maze with a score of " + score); window.location.href = "startp.html";}, 0)     
+
         }
         break
       case 40:
@@ -129,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
   scoreDisplay.innerHTML = score
 
 
-  //what happens when you eat a power-pellet
+  //what happens when you eat a green dot, it adds to the score
   function powerPelletEaten() {
     if (squares[characterCurrentIndex].classList.contains('power-pellet')) {
       score +=10
@@ -194,11 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //check for a game over
   function checkForGameOver() {
-    if (squares[characterCurrentIndex].classList.contains('ghost') &&
-      !squares[characterCurrentIndex].classList.contains('scared-ghost')) {
+    if (squares[characterCurrentIndex].classList.contains('ghost')) {
       ghosts.forEach(ghost => clearInterval(ghost.timerId))
       document.removeEventListener('keyup', moveCharacter)
-      setTimeout(function(){ alert("Game Over"); }, 500)
+      //opens the pop up message and sends you back to the start
+      setTimeout(function(){ alert("You died with a score of " + score); window.location.href = "startp.html";}, 0)     
     }
   }
 
